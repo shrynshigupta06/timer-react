@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
+import TimerList from './components/CountDownTimer/TimerList';
+import Header from './components/Header';
+import Clock from './components/WorldClock/Clock';
+
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <Header></Header>
+        <div className='container'>
+          <Routes>
+            <Route path="/" element={<TimerList />}></Route>
+            <Route path="/world-clock" element={<Clock />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

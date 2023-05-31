@@ -1,0 +1,15 @@
+.choose-country-div {
+    display: flex;
+    margin: 40px 0;
+}
+
+.country-label {
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 40px;
+    margin-top: 5px;
+}
+
+.form-select {
+    width: 340px;
+}

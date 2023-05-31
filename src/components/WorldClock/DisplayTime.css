@@ -1,0 +1,16 @@
+.digital-clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid grey;
+    width: 40vw;
+    height: 120px;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+.current-time-span {
+    font-size: 18px;
+    font-weight: 600;
+}

@@ -1,0 +1,36 @@
+.list-item {
+  list-style-type: none;
+  border: 2px solid rgb(161, 158, 158);
+  color: black;
+  font-size: 24px;
+  padding: 3px;
+  padding-left: 15px;
+  border-radius: 5px;
+  height: 70px;
+  min-width: 500px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 10px;
+}
+
+.icons {
+  position: absolute;
+  right: 10px;
+}
+
+.material-icons {
+  margin: 4px;
+  font-size: large;
+  cursor: pointer;
+  transition: 0.1s;
+  color: black;
+  background: grey;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.material-icons:hover {
+  transform: scale(1.2);
+  color: red;
+}
