@@ -6,20 +6,22 @@ import './DisplayTime.css';
 
 const DisplayTime = (props) => {
 
+    const { currentCountry } = props;
+
     const [displayTime, setDisplayTime] = useState('')
     const [offset, setOffset] = useState("+00:00");
     let [datetime, setDatetime] = useState("");
 
     useEffect(() => {
-        if (!props.currentCountry) return
+        if (!currentCountry) return
         setDisplayTime("");
-        getCurrentTimeByCountry(props.currentCountry)
+        getCurrentTimeByCountry(currentCountry)
             .then(countryTimeObj => {
                 setDatetime(countryTimeObj.datetime);
                 setOffset(countryTimeObj.utc_offset);
             });
 
-    }, [props.currentCountry]);
+    }, [currentCountry]);
 
     useEffect(() => {
         let timer = setInterval(function showTime() {
@@ -50,7 +52,7 @@ const DisplayTime = (props) => {
                 <span className='current-time-span'>Current Time:</span>
             </div>
             <div>{displayTime}</div>
-            <div>{displayTime ? props.currentCountry : ''}</div>
+            <div>{displayTime ? currentCountry : ''}</div>
         </div>
     )
 }
