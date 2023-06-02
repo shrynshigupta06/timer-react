@@ -13,15 +13,31 @@ const DisplayTime = (props) => {
     let [datetime, setDatetime] = useState("");
 
     useEffect(() => {
+        const selectedCountryFromLocalStorage = JSON.parse(window.localStorage.getItem('currentCountry'));
+        if(!(selectedCountryFromLocalStorage && selectedCountryFromLocalStorage.country === currentCountry))
+            getCurrentTimeByCountryName(currentCountry);
+    }, [])
+
+    useEffect(() => {
         if (!currentCountry) return
         setDisplayTime("");
+        // const selectedCountryFromLocalStorage = JSON.parse(window.localStorage.getItem('currentCountry'));
+        // if(!(selectedCountryFromLocalStorage && selectedCountryFromLocalStorage.country === currentCountry))
+        //     getCurrentTimeByCountryName(currentCountry);
+        getCurrentTimeByCountryName(currentCountry);
+    }, [currentCountry]);
+
+    const getCurrentTimeByCountryName = (currentCountry) => {
         getCurrentTimeByCountry(currentCountry)
             .then(countryTimeObj => {
-                setDatetime(countryTimeObj.datetime);
-                setOffset(countryTimeObj.utc_offset);
+                console.log("reposne:", countryTimeObj);
+                if(countryTimeObj) {
+                    setDatetime(countryTimeObj['datetime']);
+                    setOffset(countryTimeObj.utc_offset);
+                    window.localStorage.setItem('currentCountry', JSON.stringify({country: currentCountry, value: JSON.stringify(countryTimeObj)}));
+                }
             });
-
-    }, [currentCountry]);
+    }
 
     useEffect(() => {
         let timer = setInterval(function showTime() {
